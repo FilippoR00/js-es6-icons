@@ -113,10 +113,12 @@ const fonts = [
     }
 ];
 
+// setto le variabili
 let getType = document.getElementById("type");
 let card = document.getElementsByClassName("card-container");
 let colorIcon = document.getElementsByClassName("fas");
 
+// creo una funzione che ritorna una stringa contenente un colore che verra settato successivamente in base al tipo di icona memorizzato nell'array
 function setColor(value) {
     let temp = "";
     switch (value.color) {
@@ -133,6 +135,7 @@ function setColor(value) {
     return temp;
 }
 
+// creo una funzione che aggiunge e rimuove le classi per mostrarre il contenuto o nasconderlo. Inoltre assegna un colore random se sis eleziona l'opzione random (tramite una funzione)
 function showType(value, type){
     for (let i = 0; i < value.length; i++) {
         if (value[i].type == type || type == "all" || type == "random"){
@@ -149,13 +152,13 @@ function showType(value, type){
     }
 }
 
+// genero un numero random che arriva fino a 16^6 (contando anche lo 0). Poi il numero viene convertito in esadecimale. In fine la funzione restituisce il valore esadecimale preceduto da l'asterisco. 
 function randomColor() {
     let temp = Math.floor(Math.random() * 16777215).toString(16);
-    
-
     return "#" + temp;
 }
 
+// creo un ciclo che popoli l'HTML 
 for (let i = 0; i < fonts.length; i++) {
     let content = document.querySelector(".box").innerHTML += `
     <div class="card-container">
@@ -166,12 +169,13 @@ for (let i = 0; i < fonts.length; i++) {
     </div>
     `
 }
+// invoco la funzione in modo che se aggiorno la pagina e la select è su qualcosa diverso da "all" l'array si popoli con l'elemento selezionato
 showType(fonts, getType.value);
 
 
 
 
-
+// controllo se ci sono aggiornamenti riguardanti la select
 getType.addEventListener("change", () => {
     switch (getType.value) {
         case "all":
@@ -196,6 +200,7 @@ getType.addEventListener("change", () => {
 
 // **** bonus ****
 
+// aggiungo dinamicamente la voce "random" alla select 
 let color = document.getElementById("type").innerHTML += `<option value="random">random</option>`;
 
 
