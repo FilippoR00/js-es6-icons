@@ -115,6 +115,7 @@ const fonts = [
 
 let getType = document.getElementById("type");
 let card = document.getElementsByClassName("card-container");
+let colorIcon = document.getElementsByClassName("fas");
 
 function setColor(value) {
     let temp = "";
@@ -134,13 +135,25 @@ function setColor(value) {
 
 function showType(value, type){
     for (let i = 0; i < value.length; i++) {
-        if (value[i].type == type || type == "all"){
+        if (value[i].type == type || type == "all" || type == "random"){
             card[i].classList.remove("disabled");
+            colorIcon[i].style.color = null;
+            if(type == "random"){
+                colorIcon[i].style.color = randomColor();
+            }
         } else {
             card[i].classList.add("disabled");
+            colorIcon[i].style.color = null;
         }
         
     }
+}
+
+function randomColor() {
+    let temp = Math.floor(Math.random() * 16777215).toString(16);
+    
+
+    return "#" + temp;
 }
 
 for (let i = 0; i < fonts.length; i++) {
@@ -173,11 +186,17 @@ getType.addEventListener("change", () => {
         case "user":
             showType(fonts, getType.value);
             break;
+        case "random":
+            showType(fonts, getType.value);
+            break;
     
         
     }
 });
 
+// **** bonus ****
+
+let color = document.getElementById("type").innerHTML += `<option value="random">random</option>`;
 
 
 

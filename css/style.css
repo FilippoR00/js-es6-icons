@@ -50,7 +50,7 @@ select{
 }
 
 .box{
-    background-color: lightgray;
+    background-color: #dddddd;
     height: 86vh;
     min-height: 780px;
     padding: 30px 20px;
