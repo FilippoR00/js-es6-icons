@@ -113,4 +113,71 @@ const fonts = [
     }
 ];
 
+let getType = document.getElementById("type");
+let card = document.getElementsByClassName("card-container");
+
+function setColor(value) {
+    let temp = "";
+    switch (value.color) {
+        case "orange":
+            temp = "orange";
+            break;
+        case "blue":
+            temp = "blue";
+            break;
+        case "green":
+            temp = "green";
+            break;
+    }
+    return temp;
+}
+
+function showType(value, type){
+    for (let i = 0; i < value.length; i++) {
+        if (value[i].type == type || type == "all"){
+            card[i].classList.remove("disabled");
+        } else {
+            card[i].classList.add("disabled");
+        }
+        
+    }
+}
+
+for (let i = 0; i < fonts.length; i++) {
+    let content = document.querySelector(".box").innerHTML += `
+    <div class="card-container">
+        <div class="card">
+            <i class="${fonts[i].family} ${fonts[i].prefix}${fonts[i].name} ${setColor(fonts[i])}"></i>
+            <p>${fonts[i].name}</p>
+        </div>
+    </div>
+    `
+}
+showType(fonts, getType.value);
+
+
+
+
+
+getType.addEventListener("change", () => {
+    switch (getType.value) {
+        case "all":
+            showType(fonts, getType.value);
+            break;
+        case "animal":
+            showType(fonts, getType.value);
+            break;
+        case "vegetable":
+            showType(fonts, getType.value);
+            break;
+        case "user":
+            showType(fonts, getType.value);
+            break;
+    
+        
+    }
+});
+
+
+
 
